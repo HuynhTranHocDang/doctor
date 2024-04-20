@@ -18,9 +18,24 @@ function Profile() {
   const [userProfile, setUserProfile] = useState(null);
   // const history = useHistory(); // Initialize useHistory
 
+  // useEffect(() => {
+  //   const fetchUserProfile = async () => {
+  //     const q = query(collection(db, 'doctor'), where('uid', '==', '3T2WHohNaqdyUb2Ow9XI7MOCSGw1'));
+  //     const querySnapshot = await getDocs(q);
+  //     const userDoc = querySnapshot.docs[0];
+  //     const userData = userDoc.data();
+  //       setUserProfile(userData);
+  //       console.log(userData);
+  //   };
+
+  //   if (userProfile) {
+  //     fetchUserProfile();
+  //   }
+  // }, [userProfile]);
+
   useEffect(() => {
     const fetchUserProfile = async () => {
-      const q = query(collection(db, 'doctor'), where('uid', '==', currentUser.uid));
+      const q = query(collection(db, 'doctor'), where('uid', '==', '3T2WHohNaqdyUb2Ow9XI7MOCSGw1'));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach(doc => {
         setUserProfile(doc.data());
@@ -28,10 +43,10 @@ function Profile() {
       });
     };
 
-    if (currentUser) {
+    if (userProfile) {
       fetchUserProfile();
     }
-  }, [currentUser]);
+  }, [userProfile]);
 
   // const handleSignOut = () => {
   //   signOut(auth);
@@ -39,35 +54,63 @@ function Profile() {
 
 
   return (
+    
     <div>
-      <div className="back-link">
-        <Link to="/">Back</Link>
-      </div>
+       {/* <h1 className="header-title">Doctor Profile</h1> */}
+        {/* <div className="back-link">
+          <Link to="/" className='nav-link'>Home</Link>
+          <Link to="/Profile" className="nav-link">Profile</Link>
+          <Link to="/AppointmentForm" className="nav-link">Appointment Form</Link>
+          <Link to="/AppointmentList" className="nav-link">Appointment List</Link>
+          <Link to="/UpdatePatient" className="nav-link">Update Patient</Link>
+          <Link to="/UpdateMedicine" className="nav-link">Update Medicine</Link>
+        </div> */}
 
       <header className="header">
-        <h1 className="header-title">Doctor Profile</h1>
+       
+          <div className='back-link'>
+                <Link to="/" className='nav-link'>Home</Link>
+          </div>
+          <div className='back-link'>
+                <Link to="/Profile" className="nav-link">Profile</Link>
+          </div>
+          <div className='back-link'>
+                <Link to="/AppointmentForm" className="nav-link">Book an Appointment</Link>
+          </div>
+          <div className='back-link'>
+                <Link to="/AppointmentList" className="nav-link">Appointment List</Link>
+          </div>
+          <div className='back-link'>
+                <Link to="/UpdatePatient" className="nav-link">Update Patient</Link>
+          </div>
+          <div className='back-link'>
+                <Link to="/UpdateMedicine" className="nav-link">Update Medicine</Link>
+          </div>
+        
       </header>
       
       <div className="container">
         <div className="profile">
           <h2>Profile</h2>
-          <h3 className="BS">BS. {userProfile.name}</h3>
+          <h3 className="BS">BS. AMded Asoe</h3>
           <div className="information">
-            <p>
-              <span><strong>Name:</strong></span> <span className='infor'> {userProfile.name}</span> 
-            </p>
+            <div className='in4'>
+              <strong>
+                <p>Name: </p>
+                <p>Type: </p>
+                <p>Email: </p>
+              </strong>
+            </div>
 
-            <p>
-              <span><strong>Type:</strong></span> <span className='infor'> {userProfile.type}</span> 
-            </p>
+            <div className='infor'>
+              <p>Amded Asoe</p>                     {/*Name*/}
+              <p>Cadiordy</p>                       {/*Type*/}
+              <p>hocdang1289@gmail.com</p>          {/*email*/}
+            </div>
 
-            <p>
-              <span><strong>Email:</strong></span> <span className='infor'> {currentUser.email}</span> 
-            </p>
-
-            <p>
+            {/* <p>
               <span><strong>Email verified:</strong></span> <span className='infor'> {`${currentUser.emailVerified}`}</span> 
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

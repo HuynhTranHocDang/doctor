@@ -40,7 +40,7 @@ const AppointmentForm = () => {
     try {
         // Lấy tài liệu người dùng từ Firestore
         //currentUser.uid
-        const userRef = doc(db, 'doctor', currentUser.uid);
+        const userRef = doc(db, 'doctor', '3T2WHohNaqdyUb2Ow9XI7MOCSGw1');
         console.log('userRef: ',userRef);
         const userDoc = await getDoc(userRef);
         console.log('userDoc: ',userDoc);
@@ -49,28 +49,28 @@ const AppointmentForm = () => {
         console.log('userData: ',userData);
 
         try{
-            const qDoctor = query(collection(db, 'patient'), where('name', '==', 'doc'));
-            const doctorsQuerySnapshot = await getDocs(qDoctor);
-            const doctorsDoc = doctorsQuerySnapshot.docs[0];
-            const doctorsData = doctorsDoc.data();
+            const qPatient = query(collection(db, 'patient'), where('name', '==', patient));
+            const patientsQuerySnapshot = await getDocs(qPatient);
+            const patientsDoc = patientsQuerySnapshot.docs[0];
+            const patientsData = patientsDoc.data();
 
-            if(isValid(doctorsData, date, time)){
-                const updatedDoctorData = {
-                    ...doctorsData,
+            if(isValid(patientsData, date, time)){
+                const updatedPatientData = {
+                    ...patientsData,
                     appointments: [
-                        ...doctorsData.appointments,
+                        ...patientsData.appointments,
                     ]
                 };
                 
                 
                     // Nếu mảng cuộc hẹn không rỗng, thêm cuộc hẹn mới vào cuối mảng
-                    updatedDoctorData.appointments.push({
-                        patientName: userData.name,
+                    updatedPatientData.appointments.push({
+                        doctorName: userData.name,
                         date: date,
                         time: time
                     });
                 
-                await updateDoc(doctorsDoc.ref, updatedDoctorData);
+                await updateDoc(patientsDoc.ref, updatedPatientData);
                 
             }
             else{
@@ -108,39 +108,34 @@ const AppointmentForm = () => {
 
   return (
     <div>
-      <div className="back-link">
-        <Link to="/">Back</Link>
-      </div>
 
-      <header className="header">
-        <h1 className="header-title">Appointment Form</h1>
-      </header>
-      
-      <div className="container">
-        <div className="appointment-form">
-          <h2>Book an Appointment</h2>
-          <form id="appointment-form"> 
-            {/* <div className="appointment-submit">
-              <label htmlFor="patient-name">Patient Name:</label>
-              <input type="text" id="patient-name" name="patient-name" required />
-            </div>
-            
-            <div className="appointment-submit">
-              <label htmlFor="appointment-date">Appointment Date:</label>
-              <input type="date" id="appointment-date" name="appointment-date" required />
-            </div>
-            
-            <div className="appointment-submit">
-              <label htmlFor="appointment-time">Time:</label>
-              <input type="time" id="appointment-time" name="appointment-time" required />
-            </div>
-              Add more input fields as needed */}
+    <header className="header">
+       
+       <div className='back-link'>
+             <Link to="/" className='nav-link'>Home</Link>
+       </div>
+       <div className='back-link'>
+             <Link to="/Profile" className="nav-link">Profile</Link>
+       </div>
+       <div className='back-link'>
+             <Link to="/AppointmentForm" className="nav-link">Book an Appointment</Link>
+       </div>
+       <div className='back-link'>
+             <Link to="/AppointmentList" className="nav-link">Appointment List</Link>
+       </div>
+       <div className='back-link'>
+             <Link to="/UpdatePatient" className="nav-link">Update Patient</Link>
+       </div>
+       <div className='back-link'>
+             <Link to="/UpdateMedicine" className="nav-link">Update Medicine</Link>
+       </div>
+     
+    </header>
 
-              <form onSubmit={bookAppointment}>
-                    <label htmlFor="patient-name">Patient Name: </label>
+      {/* <label htmlFor="patient-name">Patient Name: </label>
                     <input
                         type="text"
-                        id="patient-name" name="patient-name"
+                        className="patient-name" name="patient-name"
                         value={patient}
                         onChange={(e) => setPatient(e.target.value)}
                         required
@@ -149,7 +144,7 @@ const AppointmentForm = () => {
                     <label htmlFor="appointment-date">Appointment Date: </label>
                     <input
                         type="date"
-                        id="appointment-date" name="appointment-date"
+                        className="appointment-date" name="appointment-date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                         required
@@ -158,17 +153,68 @@ const AppointmentForm = () => {
                     <label htmlFor="appointment-time">Time: </label>
                     <input
                         type='time'
-                        id="appointment-time" name="appointment-time"
+                        className="appointment-time" name="appointment-time"
                         value={time}
                         onChange={(e) => setTime(e.target.value)}
                         required
                     />
                     <p></p>              
-                  <button type="submit" className="button">Submit</button>
+                  <button type="submit" className="button">Submit</button> */}
+      
+      <div className="container">
+        <div className="appointment-form">
+          <h2>Book an Appointment</h2>
+            {/* <div className='appoi-form'> */}
+              <form  onSubmit={bookAppointment}>
+                <div className='appoi-form'>
+                  <div  className='form'>
+                    <strong>
+                    <p>
+                    <label htmlFor="patient-time" >Patient: </label>
+                    </p>
+                    <p>
+                    <label htmlFor="appointment-date">Date: </label>
+                    </p>
+                    <p>
+                    <label htmlFor="appointment-time">Time: </label>
+                    </p>
+                    </strong>
+                  </div>
+
+                  <div className='form-ingr'>
+                    <p>
+                      <input
+                          type="text"
+                          className="patient-name" name="patient-name"
+                          value={patient}
+                          onChange={(e) => setPatient(e.target.value)}
+                          required
+                      />
+                    </p>
+                    <p>
+                      <input
+                          type="date"
+                          className="appointment-date" name="appointment-date"
+                          value={date}
+                          onChange={(e) => setDate(e.target.value)}
+                          required
+                      />
+                    </p>
+                    <p>
+                      <input
+                          type='time'
+                          className="appointment-time" name="appointment-time"
+                          value={time}
+                          onChange={(e) => setTime(e.target.value)}
+                          required
+                      />
+                    </p>
+                  </div>
+                  <p></p>
+                  </div>
+                <button type="submit" className="button">Submit</button>
                 </form>
-              <div className="appointment-submit">
-              </div>
-          </form>
+            {/* </div> */}
         </div>
       </div>
     </div>

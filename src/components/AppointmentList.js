@@ -16,7 +16,7 @@ function AppointmentList() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const userRef = doc(db, 'doctor', currentUser.uid);
+                const userRef = doc(db, 'doctor', '3T2WHohNaqdyUb2Ow9XI7MOCSGw1');
                 const userDoc = await getDoc(userRef);
                 const data = userDoc.data();
                 console.log('userDoc:', data);
@@ -30,23 +30,23 @@ function AppointmentList() {
         fetchData();
     }, [currentUser]);
 
-    const deleteDoctorAppointments = async (appointment, doctorName) => {
+    const deletePatientAppointments = async (appointment, doctorName) => {
         try {
             // Tìm tài liệu của bệnh nhân dựa trên tên
             const q = query(collection(db, 'patient'), where('name', '==', appointment.patientName));
             const querySnapshot = await getDocs(q);
-            const doctorDoc = querySnapshot.docs[0];
+            const patientDoc = querySnapshot.docs[0];
             
                 // Lọc ra các cuộc hẹn có 'patientName' giống với 'patientName' cần xóa
-                const doctorAppointments = doctorDoc.data().appointments || [];
-                const updatedAppointments = doctorAppointments.filter(appt => 
+                const patientAppointments = patientDoc.data().appointments || [];
+                const updatedAppointments = patientAppointments.filter(appt => 
                     appt.date !== appointment.date || 
                     appt.time !== appointment.time || 
                     appt.doctorName !== doctorName // Corrected comparison
                 );        
                 // Cập nhật tài liệu với danh sách cuộc hẹn đã lọc
 
-            await updateDoc(doctorDoc.ref, { appointments: updatedAppointments });
+            await updateDoc(patientDoc.ref, { appointments: updatedAppointments });
             
 
     
@@ -87,46 +87,63 @@ function AppointmentList() {
     
   return (
     <div>
-      <div className="back-link">
-        <Link to="/">Back</Link>
-      </div>
-
       <header className="header">
-        <h1 className="header-title">Appointment List</h1>
-      </header>
+       
+        <div className='back-link'>
+              <Link to="/" className='nav-link'>Home</Link>
+        </div>
+        <div className='back-link'>
+              <Link to="/Profile" className="nav-link">Profile</Link>
+        </div>
+        <div className='back-link'>
+              <Link to="/AppointmentForm" className="nav-link">Book an Appointment</Link>
+        </div>
+        <div className='back-link'>
+              <Link to="/AppointmentList" className="nav-link">Appointment List</Link>
+        </div>
+        <div className='back-link'>
+              <Link to="/UpdatePatient" className="nav-link">Update Patient</Link>
+        </div>
+        <div className='back-link'>
+              <Link to="/UpdateMedicine" className="nav-link">Update Medicine</Link>
+        </div>
+     
+    </header>
       
       <div className="container">
         <div className="appointment-list">
           <h2>Appointment List</h2>
-            <div className="calendar">
-              {/* <!-- Ngày 1 --> */}
+            {/* <div className="calendar">
+
               <div className="appointment-item">
                 <p className="date">April 15</p>
                 <p className="time">10:30 AM</p>
                 <p className="patient-name">Dr. John Doe</p>
               </div>
-              {/* <!-- Ngày 2 --> */}
+
               <div className="appointment-item">
                 <p className="date">April 16</p>
                 <p className="time">11:00 AM</p>
                 <p className="patient-name">Dr. Jane Smith</p>
               </div>
 
-            </div>
+            </div> */}
+            <div className='calendar'>
             {userData && userData.appointments ? (
                     userData.appointments.map((appointment, index) => (
                         <li key={index}>
                             <div className="appointment-item">
                                 <p className="date">{appointment.date}</p>
                                 <p className="time">{appointment.time}</p>
-                                <p className="patient-name">{appointment.doctorName}</p>
-                                <button onClick={() => (deleteAppointment(appointment), deleteDoctorAppointments(appointment, userData.name))}>Cancel Appointment</button>
+                                <p className="patient-name">{appointment.patientName}</p>
+                                <button onClick={() => (deleteAppointment(appointment), deletePatientAppointments(appointment, userData.name))}>Cancel Appointment</button>
                             </div>
                         </li>
                     ))
                 ) : (
                     <li>No appointments found</li>
                 )}
+              </div>
         </div>
       </div>
     </div>

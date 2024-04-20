@@ -14,17 +14,22 @@ const Home = () => {
 
   return (
     <div>
-      <header className="header">
+      <header className="header-home">
         <h1 className="header-title">Doctor Appointment System</h1>
       </header>
-      <nav>
-        <ul>
-          <li className="menu"><Link to="/Profile" className="nav-link">Profile</Link></li>
-          <li className="menu"><Link to="/AppointmentForm" className="nav-link">Appointment Form</Link></li>
-          <li className="menu"><Link to="/AppointmentList"  id="appointment-list-link" className="nav-link">Appointment List</Link></li>
-        </ul>
-      </nav>
+
+      
       <div className="container" id="content">
+        <nav>
+          <ul>
+            <li className="menu"><Link to="/Profile" className="nav-linki">Profile</Link></li>
+            <li className="menu"><Link to="/AppointmentForm" className="nav-linki">Book an Appointment</Link></li>
+            <li className="menu"><Link to="/AppointmentList" className="nav-linki">Appointment List</Link></li>
+            <li className="menu"><Link to="/UpdatePatient" className="nav-linki">Update Patient</Link></li>
+            <li className="menu"><Link to="/UpdateMedicine" className="nav-linki">Update Medicine</Link></li>
+
+          </ul>
+        </nav>
         {/* Content will be loaded dynamically here */}
       </div>
     </div>
