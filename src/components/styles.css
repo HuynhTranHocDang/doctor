@@ -1,0 +1,143 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+  }
+  
+  .header {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .container {
+    padding: 20px;
+    background-size: 100%;
+    position: relative;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+
+  .profile, .appointment-form, .appointment-list {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-size: 100%;
+    position: relative;
+  }
+
+.appointment-submit {
+    padding: 20px;
+    margin-left: 0px;
+}  
+  
+  .button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  .menu {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  /* styles.css */
+  .back-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .back-link a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .back-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .profile-info h2 {
+    margin-bottom: 10px;
+    color: #007bff;
+  }
+  
+  .profile-info p {
+    margin: 5px 0;
+  }
+  
+  .profile-info strong {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  
+  .appointment-item {
+    border: 1px solid #cccccc;
+    padding: 10px;
+  }
+  
+  .date {
+    font-weight: bold;
+  }
+  
+  .time {
+    color: #555555;
+  }
+  
+  .patient-name {
+    margin-top: 5px;
+  }
+
+  .BS {
+    text-align: center;
+    font-size : 50px;
+  }
+
+  .information {
+    margin-left: 10%;
+    font-size: 30px;
+    position: relative;
+
+  }
+  
+  .infor {
+    text-align: center;
+    margin-left: 20px;
+  }
+  
+  
