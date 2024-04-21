@@ -13,6 +13,7 @@ const UpdatePatient = () => {
   const [date, setDate] = useState('');
   const [diagnosis, setDiagnosis] = useState('');
   const [health, setHealth] = useState('');
+  const [treatments, setTreatments] = useState('');
   const { currentUser } = useAuthValue();
 
   const updatePatient = async (e) => {
@@ -47,7 +48,8 @@ const UpdatePatient = () => {
             updatedPatientData.history.push({
                 Day_start: date,
                 Diagnosis: diagnosis,
-                Health_status: health
+                Health_status: health,
+                Treatments: treatments
             }); 
           
             await updateDoc(patientsDoc.ref, updatedPatientData);
@@ -136,17 +138,20 @@ const UpdatePatient = () => {
                 <div className='appoi-form'>
                   <div  className='form'>
                     <strong>
-                    <p>
+                    <p className='uppatient-name1'>
                         <label htmlFor="patient-time" >Patient: </label>
                     </p>
-                    <p>
+                    <p className='start-day1'>
                         <label htmlFor='start-day'>Start day: </label>
                     </p>
-                    <p>
+                    <p className='diagnosis1'>
                         <label htmlFor='diagnosis'>Diagnosis: </label>
                     </p>
-                    <p>
+                    <p className='health1'>
                         <label htmlFor='health'>Health status: </label>
+                    </p>
+                    <p className='treatments1'>
+                        <label htmlFor='treatments'>Treatments: </label>
                     </p>
                     </strong>
                   </div>
@@ -154,17 +159,17 @@ const UpdatePatient = () => {
                   <div className='form-ingr'>
                     <p>
                       <input
-                            type='text'
-                            className="patient-name" name='patient-name'
-                            value={patient}
-                            onChange={(e) => setPatient(e.target.value)}
-                            required
+                        type='text'
+                        className="uppatient-name" name='patient-name'
+                        value={patient}
+                        onChange={(e) => setPatient(e.target.value)}
+                        required
                       />
                     </p>
                     <p>
                       <input
                         type='date'
-                        id="start-day" name='start-day'
+                        className="start-day" name='start-day'
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                         required
@@ -185,6 +190,15 @@ const UpdatePatient = () => {
                         className="health" name='health'
                         value={health}
                         onChange={(e) => setHealth(e.target.value)}
+                        required
+                      />
+                    </p>
+                    <p>
+                      <input 
+                        type='text'
+                        className='treatments' name='treatments'
+                        value={treatments}
+                        onChange={(e) => setTreatments(e.target.value)}
                         required
                       />
                     </p>

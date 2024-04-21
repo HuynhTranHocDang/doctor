@@ -103,7 +103,7 @@ h2 {
 ul {
   list-style-type: none;
   padding: 0;
-  color: white;
+  color: black;
 }
 
 nav ul {
@@ -120,47 +120,24 @@ nav ul {
 
 
 
+
+
+
+
+
+        /* PROFILE */
+
 .profile p {
   margin: 5px 0;
 }
-
-.appointment-form {
-  margin: 5px 0;
-}
-
 .profile strong {
   font-weight: bold;
   margin-right: 5px;
 }
-
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-}
-
-.appointment-item {
-  border: 1px solid #cccccc;
-  padding: 10px;
-}
-
-.date {
-  font-weight: bold;
-}
-
-.time {
-  color: #555555;
-}
-
-.patient-name, .appointment-date, .appointment-time {
-  margin-top: 0px;
-}
-
 .BS {
   text-align: center;
   font-size : 40px;
 }
-
 .information {
   margin-left: 10%;
   font-size: 30px;
@@ -168,12 +145,52 @@ nav ul {
   display: flex;
   flex-direction: row;
 }
-  
 .infor {
   margin-left: 50px;
 }
 
+        /* END */
 
+
+
+
+
+
+
+    /* APPOINTMENT-LIST */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.appointment-item {
+  border: 3px solid #cccccc;
+  padding: 10px;
+  border-radius: 10px;
+  height: 170px;
+  max-height: 170px;
+  text-align: center;
+  overflow-y: auto;
+} 
+.date {
+  font-weight: bold;
+}
+.time {
+  color: black;
+}
+
+        /* END */
+
+
+
+
+
+
+        /* Book an appointment: */
+
+.appointment-form {
+  margin: 5px 0;
+}
 .appoi-form {
   margin-left: 10%;
   font-size: 30px;
@@ -181,11 +198,44 @@ nav ul {
   display: flex;
   flex-direction: row;
 }
-
 .form {
   margin-top: 5px;
 }
-
 .form-ingr {
   margin-left: 50px;
 }
+.patient-name, .appointment-date, .appointment-time {
+  margin-top: 0px;
+  /* padding: 6px 0px; */
+  font-size: 20px;
+}
+.patient-name1 {
+}
+.appointment-date1 {
+}
+.appointment-time1 {
+}
+
+        /* END */
+
+
+
+        
+
+
+        /* UPDATE-PATIENT */
+.uppatient-name, .start-day, .diagnosis, .health, .treatments {
+  font-size: 20px;
+  
+}
+.start-day1 {
+}
+
+      /* END  */
+
+
+      /* MEDICINE */
+.medicine-name, .quantity {
+  font-size: 20px;
+}
+      /* END */

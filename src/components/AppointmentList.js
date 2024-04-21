@@ -60,7 +60,9 @@ function AppointmentList() {
 
     const deleteAppointment = async (appointment) => {
         try {
-            const userRef = doc(db, 'doctor', currentUser.uid);
+
+          // currentUser.uid
+            const userRef = doc(db, 'doctor', '3T2WHohNaqdyUb2Ow9XI7MOCSGw1');
             const userDoc = await getDoc(userRef);
             // Find the document containing the appointment
                 const userAppointments = userDoc.data().appointments || [];
@@ -113,6 +115,30 @@ function AppointmentList() {
       <div className="container">
         <div className="appointment-list">
           <h2>Appointment List</h2>
+            <div className='calendar'>
+            {userData && userData.appointments ? (
+                    userData.appointments.map((appointment, index) => (
+                        <ul key={index}>
+                            <div className="appointment-item">
+                                <p className="date">{appointment.date}</p>
+                                <p className="time">{appointment.time}</p>
+                                <p className="patient-name">{appointment.patientName}</p>
+                                <button onClick={() => (deleteAppointment(appointment), deletePatientAppointments(appointment, userData.name))}>Cancel Appointment</button>
+                            </div>
+                        </ul>
+                    ))
+                ) : (
+                    <ul>No appointments found</ul>
+                )}
+              </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default AppointmentList;
+
             {/* <div className="calendar">
 
               <div className="appointment-item">
@@ -128,26 +154,3 @@ function AppointmentList() {
               </div>
 
             </div> */}
-            <div className='calendar'>
-            {userData && userData.appointments ? (
-                    userData.appointments.map((appointment, index) => (
-                        <li key={index}>
-                            <div className="appointment-item">
-                                <p className="date">{appointment.date}</p>
-                                <p className="time">{appointment.time}</p>
-                                <p className="patient-name">{appointment.patientName}</p>
-                                <button onClick={() => (deleteAppointment(appointment), deletePatientAppointments(appointment, userData.name))}>Cancel Appointment</button>
-                            </div>
-                        </li>
-                    ))
-                ) : (
-                    <li>No appointments found</li>
-                )}
-              </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default AppointmentList;

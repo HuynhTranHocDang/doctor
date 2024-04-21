@@ -84,7 +84,7 @@ const UpdateMedicine = () => {
                     <p>
                       <input
                         type='number'
-                        id="quantity" name='quantity'
+                        className="quantity" name='quantity'
                         required
                       />
                     </p>

@@ -56,15 +56,6 @@ function Profile() {
   return (
     
     <div>
-       {/* <h1 className="header-title">Doctor Profile</h1> */}
-        {/* <div className="back-link">
-          <Link to="/" className='nav-link'>Home</Link>
-          <Link to="/Profile" className="nav-link">Profile</Link>
-          <Link to="/AppointmentForm" className="nav-link">Appointment Form</Link>
-          <Link to="/AppointmentList" className="nav-link">Appointment List</Link>
-          <Link to="/UpdatePatient" className="nav-link">Update Patient</Link>
-          <Link to="/UpdateMedicine" className="nav-link">Update Medicine</Link>
-        </div> */}
 
       <header className="header">
        
@@ -119,3 +110,15 @@ function Profile() {
 }
 
 export default Profile;
+
+
+
+       {/* <h1 className="header-title">Doctor Profile</h1> */}
+        {/* <div className="back-link">
+          <Link to="/" className='nav-link'>Home</Link>
+          <Link to="/Profile" className="nav-link">Profile</Link>
+          <Link to="/AppointmentForm" className="nav-link">Appointment Form</Link>
+          <Link to="/AppointmentList" className="nav-link">Appointment List</Link>
+          <Link to="/UpdatePatient" className="nav-link">Update Patient</Link>
+          <Link to="/UpdateMedicine" className="nav-link">Update Medicine</Link>
+        </div> */}

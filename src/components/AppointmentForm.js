@@ -27,7 +27,6 @@ const isValid = (e, date, time) => {
   return false;
 };
 
-
 const AppointmentForm = () => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
@@ -83,13 +82,15 @@ const AppointmentForm = () => {
         }
 
         // Cập nhật hoặc thêm các trường mới vào tài liệu người dùng
-        const updatedUserData = {
-            ...userData,
-            appointments: [
-                ...userData.appointments,
-            ]
-        };
+        if(isValid(userData, date, time)){
+          const updatedUserData = {
+              ...userData,
+              appointments: [
+                  ...userData.appointments,
+              ]
+          };
         
+
             // Nếu mảng cuộc hẹn không rỗng, thêm cuộc hẹn mới vào cuối mảng
             updatedUserData.appointments.push({
                 patientName: patient,
@@ -97,10 +98,13 @@ const AppointmentForm = () => {
                 time: time
             });
 
-        // Cập nhật tài liệu người dùng với dữ liệu mới
-        await updateDoc(userRef, updatedUserData);
-
-        console.log('Appointment updated successfully!');
+          // Cập nhật tài liệu người dùng với dữ liệu mới
+          await updateDoc(userRef, updatedUserData);
+          console.log('Appointment update successfull!')
+        }
+        else {
+          console.log('Appoinment is not update!')
+        };
     } catch (error) {
         console.error('Error updating appointment: ', error);
     }
@@ -169,14 +173,14 @@ const AppointmentForm = () => {
                 <div className='appoi-form'>
                   <div  className='form'>
                     <strong>
-                    <p>
-                    <label htmlFor="patient-time" >Patient: </label>
+                    <p  className='patient-name1'>
+                    <label htmlFor="patient-name"  >Patient: </label>
                     </p>
-                    <p>
-                    <label htmlFor="appointment-date">Date: </label>
+                    <p  className="appointment-date1" >
+                    <label htmlFor="appointment-date"  >Date: </label>
                     </p>
-                    <p>
-                    <label htmlFor="appointment-time">Time: </label>
+                    <p className="appointment-time1" >
+                    <label htmlFor="appointment-time" >Time: </label>
                     </p>
                     </strong>
                   </div>
