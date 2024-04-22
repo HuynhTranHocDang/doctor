@@ -51,6 +51,7 @@ body {
 .container {
   padding: 20px;
   background-size: 100%;
+  background-color: whitesmoke;
   /* position: relative;
   flex: auto; */
 }
@@ -126,6 +127,81 @@ nav ul {
 
 
         /* PROFILE */
+
+.modal {
+  /* display: ${showEditForm ? 'block' : 'none'}; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+   width: 70%;  /* Điều chỉnh chiều rộng của form */
+  max-width: 700px; /* Giới hạn chiều rộng tối đa */
+  height: 70%; /* Điều chỉnh chiều cao của form */
+  max-height: 700px; /* Giới hạn chiều cao tối đa */
+  overflow-y: auto; /* Hiển thị thanh cuộn nếu nội dung quá dài */
+}
+.modal-content {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.device-form {
+  margin: 10%;
+  width: 100%; /* Đảm bảo form rộng bằng pop-up */
+  max-width: 700px; /* Giới hạn chiều rộng tối đa của form */
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.modal label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.modal input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
+.modal button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: #45a049;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+
 
 .profile p {
   margin: 5px 0;

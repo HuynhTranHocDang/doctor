@@ -1,11 +1,11 @@
 import './App.css';
-import Home from './components/Home.js'
+import Home from './compo_doctor/Home.js'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Profile from './components/Profile';
-import AppointmentForm from './components/AppointmentForm';
-import AppointmentList from './components/AppointmentList';
-import UpdatePatient from './components/UpdatePatient.js';
-import UpdateMedicine from './components/UpdateMedicine.js';
+import Profile from './compo_doctor/Profile.js';
+import AppointmentForm from './compo_doctor/AppointmentForm.js';
+import AppointmentList from './compo_doctor/AppointmentList.js';
+import UpdatePatient from './compo_doctor/UpdatePatient.js';
+import UpdateMedicine from './compo_doctor/UpdateMedicine.js';
 import { auth } from './firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { AuthProvider } from './contex/AuthContext'
